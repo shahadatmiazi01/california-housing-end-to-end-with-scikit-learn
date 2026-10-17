@@ -32,8 +32,18 @@ def load_housing():
 housing = load_housing()
 housing.shape
 
-# Step 2 - income_categories (not yet solved)
-# TODO: implement
+# Step 2 - income_categories
+def income_categories(df):
+    # TODO: pd.cut median_income with edges [0, 1.5, 3, 4.5, 6, inf] and labels 1..5; return an int Series.
+    return pd.cut(
+        df["median_income"],
+        bins=[0, 1.5, 3, 4.5, 6, np.inf],
+        labels=[1, 2, 3, 4, 5]
+    ).astype(int)
+
+housing = load_housing()
+cat = income_categories(housing)
+cat.value_counts().sort_index().tolist()
 
 # Step 3 - stratified_split (not yet solved)
 # TODO: implement
